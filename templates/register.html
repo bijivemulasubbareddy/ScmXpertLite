@@ -1,0 +1,52 @@
+ <html>
+
+<head>
+<link rel="stylesheet" href="/static/css/register.css">
+
+   <script>
+    function allLetter(inputtxt)
+      { 
+      var letters = /^[A-Za-z]+$/;
+      if(inputtxt.value.match(letters))
+      {
+      alert('Your name have accepted : you can try another');
+      return true;
+      }
+      else
+      {
+      alert('Please input alphabet characters only');
+      return false;
+      }
+      }
+   </script>
+    </body>
+  
+</head>
+
+<body>
+  <form method="POST" action="/register">
+    <div class="container">
+      <h1 style="text-align: center;">Register</h1>
+
+      <label for="email">Name</label>
+      <input type="text" placeholder="Enter Name" style="box-shadow: 3px 3px 3px slategrey;" name="Name" required>
+      <label for="email">Email</label>
+      <input type="text" placeholder="Enter Email" style="box-shadow: 3px 3px 3px slategrey;" name="Email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+      <label for="psw">Password</label>
+      <input type="password" placeholder="Enter Password" style="box-shadow: 3px 3px 3px slategrey;"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        name="Password" required>
+      <label for="psw-repeat">Confirmpassword</label>
+      <input type="password" placeholder="Confirm Password" name="Confirm_Password"
+        style="box-shadow: 3px 3px 3px slategrey;" id="psw-repeat" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        required>
+      <button style="text-align:center" type="submit" class="registerbtn">Register</button>
+      <p style="text-align:center">Already have an account?<a style="color: blue;"href="/login"> Login</a></p>
+      {% if message %} <p id="message">{{ message }}</p>{% endif %}
+      <script> setTimeout(function () { document.getElementById("message").style.display = "none"; }, 5000); </script>
+</body>
+
+</html> 

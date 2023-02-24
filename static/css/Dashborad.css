@@ -1,0 +1,22 @@
+
+.btn_group {
+  justify-self: center;
+  
+  justify-content: space-between;
+}
+.body_bg {
+  background-color: rgb(122, 122, 27);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  backdrop-filter: blur(50px);
+}
+ul {
+  list-style-type: none;
+  margin-right: 10;
+  padding: 0;
+}
+
+li {
+  float: right;
+}

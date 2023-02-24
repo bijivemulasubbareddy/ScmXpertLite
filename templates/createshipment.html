@@ -1,0 +1,166 @@
+<html>
+
+<head>
+  <title>Shipmentpage</title>
+  <link rel="stylesheet" href="/static/css/createshipment.css">
+  <meta charset="UTF-8" lang="en" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+ 
+
+<body id="body-pg" style="background-image: url('https://st3.depositphotos.com/8343336/15356/i/1600/depositphotos_153564276-stock-photo-logistics-import-export-background-of.jpg');">
+  {% if message %} <p id="message" style="color:red">{{ message }}</p>{% endif %}
+
+  <form method="post" , action="/createshipment">  
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Shipmentinvoice">Shipment_invoicenumber </h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Shipment/invoice Number" style="width: 50%" name="Shipment_invoicenumber"
+          id="Shipmentinvoice" required />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Containernumber">Container_Number </h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Container Number" style="width: 50%" name="Container_Number" required
+          id="Containernumber" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Shipmentdescription">Shipment_Description</h6>
+      </div>
+      <div class="col-md-4">
+        <!-- <textarea class="form-control" rows="3" placeholder="Shipment Description" style="width: 50%"
+          name="Shipment_Description" required id="Shipmentdescription"></textarea> -->
+          <input type="text" class="input"  name="Shipment_Description" placeholder="Shipment Description"required onkeypress="return /[0-9a-zA-Z]/i.test(event.key)"><br>
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Routedetails">Route_Details</h6>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" aria-label="Default select example" style="width: 50%" name="Route_Details" required
+          id="Routedetails">
+          <option value="Chennai">Chennai to Banglore</option>
+          <option value="Hyderabad">Hyderabad to Chennai</option>
+          <option value="Banglore">Banglore to Rajastan</option>
+          <option value="Rajastan">Rajastan to Dubai</option>
+          <option value="Dubai">Dubai to Chennai</option>
+        </select>
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Goodtypes">Goods_Type</h6>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" aria-label="Default select example" style="width: 50%" name="Goods_Type" required
+          id="Goodtypes">
+          <option value="" disabled selected>Goods_Type</option>
+          <option value="cosmetics">Cosmetics</option>
+          <option value="pharmacy">Pharmacy</option>
+          <option value="food">Food</option>
+        </select>
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Device">Device</h6>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" aria-label="Default select example" style="width: 50%" required name="Device">
+          <option value="67857">67857</option>
+          <option value="73456">73456</option>
+          <option value="52896">52896</option>
+        </select>
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Expecteddelivery">Expected_Delivary_Date</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Expected Delivery Date" style="width: 50%" type="date" required
+          name="Expected_Delivary_Date" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="POnumber">PO_Number</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="PO Number" style="width: 50%" required name="PO_Number" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Delivarynumber">Delivary_Number</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Delivery Number" style="width: 50%" required name="Delivary_Number" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="NDCnumber">NDC_Number</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="NDC Number" style="width: 50%" required name="NDC_Number" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="BatchId">Batch_ID:</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Batch Id" style="width: 50%" name="Batch_ID" />
+      </div>
+    </div>
+    <div class="row justify-content-center m-auto p-2">
+      <div class="col-md-2">
+        <h6 for="Serialnumber">Serial_Number_of_Goods</h6>
+      </div>
+      <div class="col-md-4">
+        <input placeholder="Serial Number of goods" style="width: 50%" required name="Serial_Number_of_Goods" />
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center m-5">
+      <button class="btn btn-secondary me-md-2" type="reset">
+        Cancel Shipment
+      </button>
+      <button class="btn btn-primary" type="submit" value="Click">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
+          viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+        <i class="bi bi-plus-circle"></i>Create Shipment
+      </button>
+
+    </div>
+    
+    <script> setTimeout(function () { document.getElementById("message").style.display = "none"; }, 5000); </script>
+
+  </form>
+</body>
+
+</html>

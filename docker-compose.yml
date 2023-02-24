@@ -1,0 +1,68 @@
+version: "3"
+
+services:
+  app:
+    image: bijivemulasubbareddy123/scmxpert:latest
+    ports:
+      - 8000:8000
+  
+    
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    ports:
+      - 2181:2181
+    volumes:
+      - zookeeper_data:/bitnami
+    environment:   
+      - ALLOW_ANONYMOUS_LOGIN=yes 
+  kafka:
+    image: docker.io/bitnami/kafka:3.2
+    ports:
+      - 9092:9092
+    volumes:
+      - kafka_data:/bitnami
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181  
+      - ALLOW_PLAINTEXT_LISTENER=yes  
+    depends_on:
+      - zookeeper
+    healthcheck: 
+      test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --list"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  socket:
+    image: bijivemulasubbareddy123/socket:latest
+    # build: ./server/
+    ports:
+      - 12345:12345
+    
+  producer:
+    image: bijivemulasubbareddy123/producer:latest
+    depends_on:
+      kafka:
+        condition: service_healthy 
+      
+    
+  consumer:
+    image: bijivemulasubbareddy123/consumer:latest
+    depends_on:
+      kafka:
+        condition: service_healthy 
+      
+   
+
+volumes:
+  zookeeper_data:   
+    driver: local
+  kafka_data:
+    driver: local
+
+
+
+
+
+
+

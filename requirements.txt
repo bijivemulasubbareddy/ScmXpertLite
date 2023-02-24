@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+passlib
+pydantic
+starlette
+mongoengine
+jinja2
+python-multipart
+python-dotenv
+pymongo[srv]
+

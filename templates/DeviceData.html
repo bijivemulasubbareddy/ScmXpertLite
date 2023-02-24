@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DataStream</title>
+  </head>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #d6eeee;
+    }
+  </style>
+  <body>
+    <h2 style="text-align: center; color: black">Device Data Table</h2>
+
+    <table style="width: 100%">
+      <tr>
+        <th>Battery_Level</th>
+        <th>Device_Id</th>
+        <th>First_Sensor_temperature</th>
+        <th>Route_From</th>
+        <th>Route_To</th>
+      </tr>
+      
+      {% for i in createshipment %}
+      <tr>
+        <td>{{ i["Battery_Level"]}}</td>
+        <td>{{ i["Device_Id"]}}</td>
+        <td>{{ i["First_Sensor_temperature"]}}</td>
+        <td>{{ i["Route_From"]}}</td>
+        <td>{{ i["Route_To"]}}</td>
+      </tr>
+
+      {% endfor %}
+    </table>
+  </body>
+</html>

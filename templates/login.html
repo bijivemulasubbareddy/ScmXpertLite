@@ -1,0 +1,199 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/css/login.css">
+<style>
+  /* body {
+    background: url("login.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    backdrop-filter: 80%;
+}  */
+</style>
+</head>
+
+<body>
+  <!-- <img class='logo' src="/static/images/login.jpg" alt="login"> -->
+  <section>
+    <div class="login-root">
+      <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+        <div class="loginbackground box-background--white padding-top--64">
+          <div class="loginbackground-gridContainer">
+            <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+              <div class="box-root"
+                style="background-image: linear-gradient(white 0%, rgb(252, 247, 248) 33%); flex-grow: 1;">
+              </div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+              <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+              <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+              <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+              <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+              <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+              <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+              <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+              <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+          <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+            <h1><a>SCMExpert</a></h1>
+          </div>
+          <div class="box-root flex-flex flex-justifyContent--center error">
+          </div>
+
+          <div class="formbg-outer">
+            <div class="formbg">
+              <div class="formbg-inner padding-horizontal--48">
+
+
+                <form id="stripe-login" action="/Dashborad" method="POST">
+
+                  <div class="field padding-bottom--24">
+                    <label for="email">Email</label>
+                    <input type="email" name="Email" placeholder="Enter Email">
+                  </div>
+
+                  <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                      <label for="password">Password</label>
+                      <div class="reset-pass">
+                        <a href="/forgotpassword">Forgot your password</a>
+
+                      </div>
+                    </div>
+                    <input type="password" name="Password" placeholder="Enter your password" minlength="6">
+                  </div>
+
+                  <div id="captcha">
+                  </div>
+                  <input type="text" placeholder="Captcha" id="cpatchaTextBox" style="width: 22rem;
+                    height: 50px;
+                    border: 1px solid gainsboro;" /><br><br>
+
+                  <button type="button" class="btn btn-primary" style="width: 10rem;
+                        font-size: 22px;
+                        
+                        height: 40px;" onclick="validateCaptcha()">
+                    check</button>
+
+                  <input type="submit" value="login" id="login" style="width: 11rem;background-color: blue;
+                      font-size: 22px;
+                      margin-left: 10px;
+                      height: 40px;" class="login-btn" />
+
+                  {% if message %} <p id="message" style="color:red">{{ message }}</p>{% endif %}
+                  <script> setTimeout(function () { document.getElementById("message").style.display = "none"; }, 5000); </script>
+
+                </form>
+
+              </div>
+            </div>
+            <div class="footer-link padding-top--24">
+              <span style="color:white">Don't Have an account? <a href="/register" style="color: whitesmoke; cursor: pointer; font-size: 20px;"> register
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section>
+    <fieldset>
+
+      </div>
+
+  </section>
+
+  <body onload="createCaptcha()">
+
+
+    <script>
+      var code;
+      function createCaptcha() {
+        var buttoncheck = document.getElementById("login");
+
+        //clear the contents of captcha div first 
+        document.getElementById('captcha').innerHTML = "";
+        var charsArray =
+          "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+        var lengthOtp = 6;
+        var captcha = [];
+        for (var i = 0; i < lengthOtp; i++) {
+          //below code will not allow Repetition of Characters
+          var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+          if (captcha.indexOf(charsArray[index]) == -1)
+            captcha.push(charsArray[index]);
+          else i--;
+        }
+        var canv = document.createElement("canvas");
+        canv.id = "captcha";
+        canv.width = 100;
+        canv.height = 50;
+        var ctx = canv.getContext("2d");
+        ctx.font = "25px Georgia";
+        ctx.strokeText(captcha.join(""), 0, 30);
+        //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+        code = captcha.join("");
+        document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+      }
+      passwordInput.addEventListener("input", function () {
+        if (passwordInput.validity.patternMismatch) {
+          passwordInput.setCustomValidity("Password must contain at least 8 characters, including a lowercase letter, an uppercase letter, a number, and a special character (@, #, $, %, ^, &, +, =).");
+        }
+        else {
+          alert("Succesfully signed");
+
+
+        }
+
+      })
+
+
+      function validateCaptcha() {
+        event.preventDefault();
+        debugger
+        var buttoncheck = document.getElementById("login");
+        buttoncheck.disabled = true;
+        if (document.getElementById("cpatchaTextBox").value == code) {
+          buttoncheck.disabled = false;
+          alert(" succesful")
+          // passwordInput.addEventListener("input", function()
+          // {
+
+
+        }
+
+        else {
+          alert("Invalid try Again");
+          createCaptcha();
+
+        }
+      }
+
+
+
+
+
+
+    </script>
+  </body>
+
+</html>
